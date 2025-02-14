@@ -4,7 +4,7 @@
 
 This repository contains code and links to the paper "T2I-FactualBench: Benchmarking the Factuality of Text-to-Image Models with Knowledge-Intensive Concepts". T2I-FactualBench is the benchmark to evaluate the factuality of text-to-image models when generating images that involves knowledge-intensive concepts. We propose a three-tiered knowledge-intensive text-to-image generation framework, spanning from the basic memorization of individual knowledge concepts to the more complex composition of multiple knowledge concepts. To conduct an effective and efficient evaluation, we also introduce a multi-round visual question answering (VQA)-based evaluation framework aided by advanced multi-modal LLMs.
 
-![model](assets/general_concept.png)
+<img src="assets/general_concept.png" alt="framework" width="900" />
 
 ## Multi-Round VQA
 
@@ -16,19 +16,21 @@ This Multi-Round VQA framework consists of three VQA tasks: (1)Concept Factualit
 
 Want to submit results on the leaderboard? Please email the authors.
 
-<img src="assets/model_performance.png" alt="multi-round_vqa" width="500" />
+<img src="assets/model_performance.png" alt="result_1" width="500" />
 
 
-<img src="assets/category_performance_whole.png" alt="multi-round_vqa" width="650" />
+<img src="assets/category_performance_whole.png" alt="result_2" width="650" />
 
 ## Example Cases of Diverse Generations by Models on T2I-FactualBench 
 
 ### SKCM
-![case1](assets/SKCM.png)
+<img src="assets/SKCM.png" alt="SKCM" width="900" />
+
 ### SKCI
-![case2](assets/SKCI.png)
+<img src="assets/SKCI.png" alt="SKCI" width="900" />
+
 ### MKCC
-![case3](assets/MKCC.png)
+<img src="assets/MKCC.png" alt="MKCC" width="900" />
 
 ## Release
 
