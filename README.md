@@ -10,23 +10,24 @@ This repository contains code and links to the paper "T2I-FactualBench: Benchmar
 
 This Multi-Round VQA framework consists of three VQA tasks: (1)Concept Factuality Evaluation; (2) Instantiation Completeness Evaluation and (3) Composition Factuality Evaluation
 
-<img src="assets/evaluation_short.png" alt="multi-round_vqa" width="300" />
+<img src="assets/evaluation_short.png" alt="multi-round_vqa" width="500" />
 
 ## Leaderboard
 
 Want to submit results on the leaderboard? Please email the authors.
 
-![result1](assets/model_performance.png)
+<img src="assets/model_performance.png" alt="multi-round_vqa" width="500" />
 
-![result2](assets/category_performance_whole.png)
+
+<img src="assets/category_performance_whole.png" alt="multi-round_vqa" width="650" />
 
 ## Example Cases of Diverse Generations by Models on T2I-FactualBench 
 
-# SKCM
+### SKCM
 ![case1](assets/SKCM.png)
-# SKCI
+### SKCI
 ![case2](assets/SKCI.png)
-# MKCC
+### MKCC
 ![case3](assets/MKCC.png)
 
 ## Release
