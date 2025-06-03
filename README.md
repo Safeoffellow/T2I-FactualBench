@@ -75,7 +75,7 @@ The concept image dataset can be downloaded from Hugging Face. To facilitate thi
   ```bash
   python download.py
 
-The script will download the concept_image.tar.gz file from Hugging Face and extract it to the data directory.
+4. The script will download the concept_image.tar.gz file from Hugging Face and extract it to the data directory.
 
 ### 2. Image Generation
 
