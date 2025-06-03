@@ -22,7 +22,7 @@
     </br>
     </br>
         <a href="https://arxiv.org/abs/2412.04300">
-        <img src='assets/Paper-Arxiv-orange.svg' alt='Paper PDF'></a>
+        <img src='https://img.shields.io/badge/T2I--FactualBench-Arxiv-red' alt='Paper PDF'></a>
         <a href="https://huggingface.co/datasets/Sakeoffellow001/T2i_Factualbench">
         <img src='https://img.shields.io/badge/Dataset-HuggingFace-yellow' alt='Dataset'></a>
   </p>
@@ -74,6 +74,7 @@ The concept image dataset can be downloaded from Hugging Face. To facilitate thi
 3. Run the download.py script:
   ```bash
   python download.py
+
 The script will download the concept_image.tar.gz file from Hugging Face and extract it to the data directory.
 
 ### 2. Image Generation
