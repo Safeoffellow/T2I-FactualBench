@@ -18,7 +18,7 @@
     <br>
     <sup>1</sup> Zhejiang University&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>2</sup> Alibaba Group&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<sup>3</sup> Nanyang Technological University&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
     <br>
-    <sup>*</sup>Corresponding author &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+    <sup>*</sup> Corresponding author &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
     </br>
     </br>
         <a href="https://arxiv.org/abs/2412.04300">
@@ -31,8 +31,6 @@
 ## Introduction
 
 This repository contains code and links to the paper "T2I-FactualBench: Benchmarking the Factuality of Text-to-Image Models with Knowledge-Intensive Concepts". T2I-FactualBench is the benchmark to evaluate the factuality of text-to-image models when generating images that involves knowledge-intensive concepts. We propose a three-tiered knowledge-intensive text-to-image generation framework, spanning from the basic memorization of individual knowledge concepts to the more complex composition of multiple knowledge concepts. To conduct an effective and efficient evaluation, we also introduce a multi-round visual question answering (VQA)-based evaluation framework aided by advanced multi-modal LLMs.
-
-<img src="assets/general_concept.png" alt="framework" width="900" />
 
 ## Multi-Round VQA
 
