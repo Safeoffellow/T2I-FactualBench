@@ -38,25 +38,6 @@ This Multi-Round VQA framework consists of three VQA tasks: (1) Concept Factuali
 
 <img src="assets/evaluation_short.png" alt="multi-round_vqa" width="500" />
 
-## Leaderboard
-
-Want to submit results on the leaderboard? Please email the authors.
-
-<img src="assets/model_performance.png" alt="result_1" width="500" />
-
-<img src="assets/category_performance_whole.png" alt="result_2" width="650" />
-
-## Example Cases of Diverse Generations by Models on T2I-FactualBench 
-
-### SKCM
-<img src="assets/SKCM.png" alt="SKCM" width="900" />
-
-### SKCI
-<img src="assets/SKCI.png" alt="SKCI" width="900" />
-
-### MKCC
-<img src="assets/MKCC.png" alt="MKCC" width="900" />
-
 ## Start
 ### 1. Dataset Download
 
@@ -147,6 +128,24 @@ Or
 bash ./eval/eval_dino.sh
 ```
 
+## Leaderboard
+
+Want to submit results on the leaderboard? Please email the authors.
+
+<img src="assets/model_performance.png" alt="result_1" width="500" />
+
+<img src="assets/category_performance_whole.png" alt="result_2" width="650" />
+
+## Example Cases of Diverse Generations by Models on T2I-FactualBench 
+
+### SKCM
+<img src="assets/SKCM.png" alt="SKCM" width="900" />
+
+### SKCI
+<img src="assets/SKCI.png" alt="SKCI" width="900" />
+
+### MKCC
+<img src="assets/MKCC.png" alt="MKCC" width="900" />
 
 ## Release
 
