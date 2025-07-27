@@ -111,7 +111,9 @@ The Multi-Round VQA evaluation framework involves asking multiple rounds of visu
 To run the Multi-Round VQA evaluation, use the following script:
 
 ```bash
-bash bash/eval_multi_round/eval.sh
+bash bash/eval_multi_round/gpt4o_score.sh
+bash bash/eval_multi_round/gpt4o_extract.sh
+bash bash/eval_multi_round/gpt4o_metrics.sh
 ```
 
 #### 3.2 Traditional Metrics Evaluation
@@ -119,13 +121,7 @@ bash bash/eval_multi_round/eval.sh
 For a more traditional evaluation approach, we also provide scripts that use pre-trained models like CLIP and DINO for evaluating the generated images' factuality.
 
 ```bash
-bash ./eval/eval_clip.sh
-```
-
-Or
-
-```bash
-bash ./eval/eval_dino.sh
+bash ./eval/eval_score.sh
 ```
 
 ## Leaderboard
