@@ -10,8 +10,8 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import argparse
 import glob
 
-def infer(result_path, model_name, level, eval_model):
-    score_path = os.path.join(result_path, model_name, level+ f"{eval_model}_score")
+def infer(result_path, model_name, level):
+    score_path = os.path.join(result_path, model_name, level, "_score")
     json_files = [file for file in os.listdir(score_path) if file.endswith('.jsonl')]
     print(json_files)
     result_txt = os.path.join(score_path, "result.txt")
@@ -112,11 +112,11 @@ def infer(result_path, model_name, level, eval_model):
                 integration_all.append(Metric_integration)
                 writer.write("\n")
 
-            if level == "Knowledge_Momerization":
+            if level == "SKCM":
                 Metric_all = Metric_concept
-            elif level == "Knowledge_Understanding":
+            elif level == "SKCI":
                 Metric_all = round((Metric_concept + Metric_task) / 2, 3)
-            elif level == "Knowledge_Applying":
+            elif level == "MKCC":
                 Metric_all = round((Metric_concept + Metric_task + Metric_integration) / 3, 3)
             else:
                 Metric_all = "Wrong Level!"
@@ -132,10 +132,10 @@ def infer(result_path, model_name, level, eval_model):
 
         writer.write(f"Level Metric Concept: {round((sum(concept_all) / len(json_files)),3)}")
         writer.write("\n")
-        if level == "Knowledge_Understanding" or level == "Knowledge_Applying":
+        if level == "SKCI" or level == "MKCC":
             writer.write(f"Level Metric Task: {round((sum(task_all) / len(json_files)),3)}")
             writer.write("\n")
-        if level == "Knowledge_Applying":
+        if level == "MKCC":
             writer.write(f"Level Metric Integration: {round((sum(integration_all) / len(json_files)),3)}")
             writer.write("\n")
         
@@ -147,13 +147,15 @@ def infer(result_path, model_name, level, eval_model):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluation Script")
     parser.add_argument("--result_path", type=str, required=True, help="Path to the result directory.")
-    parser.add_argument("--model_name", type=str, required=True)
+    parser.add_argument("--model_name", type=list, required=True)
     parser.add_argument("--level", type=str, required=True, help="Level name for logging purposes.")
-    parser.add_argument("--eval_model", type=str, required=True, help="Name of Evaluation Model")
     args = parser.parse_args()
-    if args.level == "level_all":
-        infer(args.result_path, args.model_name, "Knowledge_Momerization", args.eval_model)
-        infer(args.result_path, args.model_name, "Knowledge_Understanding", args.eval_model)
-        infer(args.result_path, args.model_name, "Knowledge_Applying", args.eval_model)
-    else:
-        infer(args.result_path, args.model_name, args.level, args.eval_model)
+
+    model_list = args.model_name
+    for model in model_list:
+        if args.level == "all":
+            infer(args.result_path, model, "SKCM")
+            infer(args.result_path, model, "SKCI")
+            infer(args.result_path, model, "MKCC")
+        else:
+            infer(args.result_path, model, args.level)

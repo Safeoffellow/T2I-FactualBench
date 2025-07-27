@@ -34,10 +34,10 @@ def extract_task_score(text):
         return None
 
 
-def infer(result_path, model_name, level, eval_model):
-    response_path = os.path.join(result_path, model_name, level+ f"_{eval_model}")
+def infer(result_path, model_name, level):
+    response_path = os.path.join(result_path, model_name, level)
     print(response_path)
-    score_path = os.path.join(result_path, model_name, level+ f"{eval_model}_score")
+    score_path = os.path.join(result_path, model_name, level+ "_score")
     os.makedirs(score_path, exist_ok=True)
     json_files = [file for file in os.listdir(response_path) if file.endswith('.jsonl')]
     print(json_files)
@@ -75,12 +75,12 @@ if __name__ == "__main__":
     parser.add_argument("--eval_model", type=str, required=True, help="Name of Evaluation Model")
     args = parser.parse_args()
     
-    if args.level == "level_all":
-        infer(args.result_path, args.model_name, "Knowledge_Momerization", args.eval_model)
-        infer(args.result_path, args.model_name, "Knowledge_Understanding", args.eval_model)
-        infer(args.result_path, args.model_name, "Knowledge_Applying", args.eval_model)
-        infer(args.result_path, args.model_name, "Knowledge_Memorization_add", args.eval_model)
-    else:
-        # models = ["fluxdev", "msdiffusion", "pixart", "playground", "sd1.5_new", "sd3_real", "sd3.5_new", "sdXL", "ssr_encoder"]
-        for model in models:
-            infer(args.result_path, model, args.level, args.eval_model)
+    model_list = args.model_name:
+
+    for model in model_list:
+        if args.level == "level_all":
+            infer(args.result_path, model, "SKCM")
+            infer(args.result_path, model, "SKCI")
+            infer(args.result_path, model, "MKCC")
+        else:
+            infer(args.result_path, model, args.level)

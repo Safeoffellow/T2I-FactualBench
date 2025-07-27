@@ -13,7 +13,7 @@ import threading
 from prompt_process import concept_prompt_process, task_prompt_process, integration_prompt_process
 
 # 配置日志记录
-log_filename = "./script_gpt4o_360_new.log"
+log_filename = "./script_gpt4o.log"
 logging.basicConfig(level=logging.ERROR, format="%(asctime)s - %(levelname)s - %(message)s", handlers=[logging.FileHandler(log_filename), logging.StreamHandler()])
 
 class GPT4oService:
@@ -103,8 +103,8 @@ def process_data(data, gpt4o, image_base, level):
             part_data = {"concept": concept, "concept_image": concept_image_path, "gpt4o_reasponse": res_concept}
             concept_part_list.append(part_data)
 
-        if level == "Knowledge_Applying" or level == "Knowledge_Understanding":
-            if level == "Knowledge_Applying" and len(data["concept"]) == 3:
+        if level == "MKCC" or level == "SKCI":
+            if level == "MKCC" and len(data["concept"]) == 3:
                 bandf = True
             else:
                 bandf = False
@@ -127,13 +127,10 @@ def process_data(data, gpt4o, image_base, level):
             print(res_task)
             task_eva = res_task
 
-            if level == "Knowledge_Applying":
-                # print("Knowledge_Applying")  
+            if level == "MKCC":
                 # integration evaluation        
                 score_prompt_integration = integration_prompt_process(data)
-                # print(score_prompt_integration)
                 response = gpt4o.gpt_with_retry(score_prompt_integration, image_generated_path, None)
-                # print("GPT4o_Response:", response)
                 if response:
                     if response["success"] == False:
                         res_integration = "None"
@@ -155,8 +152,6 @@ def process_data(data, gpt4o, image_base, level):
                 data["integration_score"] = ""
                 data["task_score"] = task_eva
                 return data, false_flag
-
-        # "knowledge memorization"
         else:
             data["concept_score"] = concept_part_list
             data["integration_score"] = ""
@@ -169,8 +164,8 @@ def process_data(data, gpt4o, image_base, level):
         # if false_flag == 1:
         return data, false_flag
 
-def infer(result_path, model_name, level, eval_model):
-    image_base = "https://mvap-public-data.oss-cn-zhangjiakou.aliyuncs.com/ziwei/T2I_Knowledge_Bench/"
+def infer(result_path, model_name, level):
+    image_base = 
     gpt4o = GPT4oService()
     print(result_path)
     # print(os.path.join(result_path, model_name,level))
@@ -233,7 +228,7 @@ def infer(result_path, model_name, level, eval_model):
 
         try:
             # 保存结果
-            gpt4o_response_path = os.path.join(result_path, model_name ,level+f"_{eval_model}")
+            gpt4o_response_path = os.path.join(result_path, model_name ,level)
             os.makedirs(gpt4o_response_path, exist_ok=True)
             gpt4o_response_jsonl_path = os.path.join(gpt4o_response_path, json_name.split("/")[-1])
             with jsonlines.open(gpt4o_response_jsonl_path , "w") as writer:
@@ -249,17 +244,15 @@ def infer(result_path, model_name, level, eval_model):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluation Script")
     parser.add_argument("--result_path", type=str, required=True, help="Path to the result directory.")
-    parser.add_argument("--model_name", type=str, required=True)
+    parser.add_argument("--model_name", type=list, required=True)
     parser.add_argument("--level", type=str, required=True, help="Level name for logging purposes.")
-    parser.add_argument("--eval_model", type=str, required=True, help="Name of Evaluation Model")
     args = parser.parse_args()
-    
-    models = ["dalle3"]
-    for model in models:
-        if args.level == "level_all":
-            infer(args.result_path, args.model_name, "Knowledge_Momerization", args.eval_model)
-            infer(args.result_path, args.model_name, "Knowledge_Understanding", args.eval_model)
-            infer(args.result_path, args.model_name, "Knowledge_Applying", args.eval_model)
-            infer(args.result_path, args.model_name, "Knowledge_Memorization_add", args.eval_model)
+
+    model_list = args.model_name
+    for model in model_list:
+        if args.level == "all":
+            infer(args.result_path, model, "SKCM")
+            infer(args.result_path, model, "SKCI")
+            infer(args.result_path, model, "MKCC")
         else:
-            infer(args.result_path, model, args.level, args.eval_model)
+            infer(args.result_path, model, args.level)

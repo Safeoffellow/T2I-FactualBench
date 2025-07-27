@@ -1,6 +1,6 @@
 python eval_clip_dion.py \
-    --result_path /mnt/workspace/ziwei/T2I_Knowledge_bench/ \
-    --level level_all \
-    --model sd3.5_new \
+    --result_path  \
+    --level all \
+    --model '["model1", "model2", "model3"]' \
     --clipt all \
     --text_knowledge yes 
